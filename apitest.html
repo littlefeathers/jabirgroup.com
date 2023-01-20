@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Form</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <form>
+    <label for="textbox">Enter some text:</label>
+    <input type="text" id="textbox" name="textbox">
+    <br>
+    <input type="submit" value="Submit" id="submitBtn">
+  </form>
+  <br>
+  <div id="response"></div>
+  
+  <script>
+    $(document).ready(function(){
+        $("#submitBtn").click(function(){
+            var textboxValue = $("#textbox").val();
+            var apiUrl = "https://loginfo.azurewebsites.net/api/HttpTrigger1?name=" + textboxValue + "&code=qK0jRnQAPQKKFG5TlOPHw0o3PqWMfv1Q66yyUfcpUE8DAzFujVZJ8A==";
+
+            $.get(apiUrl, function(data, status){
+                console.log(data);
+                $("#response").html(data);
+				//localStorage.setItem("response", data);
+                //$("#response").html(localStorage.getItem("response"));
+            });
+        });
+    });
+  </script>
+</body>
+</html>
